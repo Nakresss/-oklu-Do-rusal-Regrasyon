@@ -4,6 +4,9 @@ import pandas as pd
 import seaborn as sns
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
+from sklearn.linear_model import LinearRegression
+import numpy as np
+from sklearn.metrics import mean_squared_error
 #Çift tırnak içine data dosyasının adı yazılacak
 ad = pd.read_csv("Advertising.csv", usecols = [1,2,3,4])
 df = ad.copy()
@@ -12,7 +15,7 @@ df.head()
 
 X = df.drop("sales", axis = 1)
 Y = df["sales"]
-
+X.columns = ["feature1","feature2","feature3"]
 X_train, X_test,Y_train,Y_test = train_test_split(X,Y, test_size = 0.20, random_state=42)
 print("X'in Train gözlemi",X_train.shape)
 print("Y'nin train gözlemi",Y_train.shape)
